@@ -1,62 +1,57 @@
-from keras.models import model_from_json
-import os
-from hyperparms import BATCH_SIZE,TIME_STEPS,FEATURES_COUNT,EPOCH,ITERATIONS,LSTM_UNITS,LEARNING_RATE,DROPOUT_SIZE,SUBJECT
 import pandas as pd
-from utils import normalize_dataframe, denormalize, diff_to_percent, create_dataset, adjust_index, remove_str_from_row
-import matplotlib.pyplot as plt
+import utils
 import numpy as np
+import plotly.graph_objects as go
+import plotly.offline as pyo
 
-def predict(BATCH_SIZE, TIME_STEPS):
-    os.chdir('C:\\Users\\kbj20\\OneDrive\\바탕 화면\\trading')
-
-    stock = pd.read_csv('stock\\1\\{s}.csv'.format(s=SUBJECT))
-    stock.columns = ['Date', 'Close','Open', 'High', 'Low', 'Volume', 'IndividualBuying','ForeignerBuying','InstitutionBuying', 'ForeignerHolding', 'InstitutionHolding', 'Diff','Change' ]
-    stock = stock.set_index('Date').dropna()
-    _stock = stock.copy()
-    stock['Diff'] = [d[-2] * -1 if d[-1] == 'FALL' or d[-1] == 'LOWER_LIMIT' else d[-2] for d in stock.values ]
-    stock = stock.drop(['Change'], axis=1)
-    stock = stock.sort_index()
-    stock['Diff'] = diff_to_percent(stock)
-    #stock['Close'] = stock['Close'].ewm(5).mean()
-    stock = stock[['Diff','Open','High','Low','Volume', 'IndividualBuying', 'ForeignerBuying', 'InstitutionBuying', 'ForeignerHolding', 'InstitutionHolding','Close']]
-    stock = normalize_dataframe(stock)
+def predict(BATCH_SIZE, TIME_STEPS, SUBJECT, LSTM_UNITS, FEATURES_COUNT, EPOCH, ITERATIONS):
+    csv = pd.read_csv('stock/{s}.csv'.format(s=SUBJECT)).sort_index()
+    stock = utils.preprocess(csv)
+    denorm_stock = stock.copy()
+    denorm_stock.index = pd.to_datetime(denorm_stock.index)
+    stock = utils.normalize_dataframe(stock)
     stock = stock.fillna(method='ffill')
 
     #%%
 
-    TEST_NUM = BATCH_SIZE * 10 + TIME_STEPS  # 250
-    TRAIN_NUM = int(len(stock)) - TEST_NUM * 2  # 1596
-    temp = TRAIN_NUM - BATCH_SIZE  # 1546
-    #print(TEST_NUM, TRAIN_NUM, temp)
-
-    train = stock[temp % BATCH_SIZE:-2 * TEST_NUM]
-    val = stock[-2 * TEST_NUM:-TEST_NUM]
+    TEST_NUM = (BATCH_SIZE * 10 + TIME_STEPS)
     test = stock[-TEST_NUM:]
-    #print(len(train), len(val), len(test))
 
     #%%
+    # 잘린 데이터
+    cut = (len(stock)-TIME_STEPS) % BATCH_SIZE
+    _stock = stock[cut:]
+    _denorm_stock = denorm_stock[cut:]
 
-    #x_train, y_train = create_dataset(train.to_numpy(), TIME_STEPS, FEATURES_COUNT)
-    #x_val, y_val = create_dataset(val.to_numpy(), TIME_STEPS, FEATURES_COUNT)
-    x_test, y_test = create_dataset(test.to_numpy(), TIME_STEPS, FEATURES_COUNT)
-    x_data, y_data = create_dataset(stock[temp % BATCH_SIZE:].to_numpy(), TIME_STEPS, FEATURES_COUNT)
+    x_test, y_test = utils.create_dataset(test.to_numpy(), TIME_STEPS, FEATURES_COUNT)
+    x_data, y_data = utils.create_dataset(_stock.to_numpy(), TIME_STEPS, FEATURES_COUNT)
 
-    json_file = open('stock\\1\\1_bs{0}ts{1}ep{2}it{3}_model'.format(BATCH_SIZE,TIME_STEPS, EPOCH, ITERATIONS), 'r')
-    model = json_file.read()
-    model = model_from_json(model)
-    model.load_weights('stock\\1\\1_bs{0}ts{1}ep{2}it{3}_weight'.format(BATCH_SIZE,TIME_STEPS, EPOCH, ITERATIONS))
-    print(model.summary())
+    model = utils.get_model_weight(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS)
 
+    pred = model.predict(x_data, batch_size = BATCH_SIZE)
+    future = model.predict(x_test[-BATCH_SIZE:], batch_size=BATCH_SIZE)
 
-    pred = model.predict(x_data, batch_size=BATCH_SIZE)
-    future = model.predict(x_test[-TIME_STEPS:], batch_size=BATCH_SIZE)
-    print(denormalize(future, _stock['Close']))
+    _y_hat = np.array(list(stock['Close'][:TIME_STEPS]) + list(pred) + list(future))
+    y_hat = [i[0] if isinstance(i, (np.ndarray, np.generic)) else i for i in _y_hat ]
 
-    plt.figure(figsize=(12, 5))
-    plt.plot(list(pred)+list(future), 'r', label="prediction")
-    plt.plot(list(y_data), label="answer")
-    plt.grid(b=True, which='both', axis='both')
-    plt.legend()
-    plt.show()
-    plt.close()
+    denorm_pred = np.array(utils.denormalize(y_hat, denorm_stock['Close'])).reshape(-1, 1)
+    pred_candle = pd.DataFrame(denorm_pred, columns=['Close'])
 
+    batch_days = utils.batch_workdays(denorm_stock.index[-1], BATCH_SIZE)
+    y_candle = _denorm_stock.sort_index()
+    pred_candle.index = y_candle.index.append(pd.to_datetime(batch_days))
+
+    data = dict(type='candlestick',
+                x=y_candle.index,
+                open=y_candle['Open'],
+                high=y_candle['High'],
+                low=y_candle['Low'],
+                close=y_candle['Close'])
+
+    layout = go.Layout(
+        xaxis=dict( range=[pred_candle.index[0], pred_candle.index[-1]] )
+    )
+    data2 = dict(x=pred_candle.index, y=pred_candle.Close, mode='lines')
+    fig = dict(data=[data, data2], layout=layout)
+
+    pyo.plot(fig)

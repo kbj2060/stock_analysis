@@ -1,12 +1,19 @@
-import sys
-from analysis import analysis
-from predict import predict
-from hyperparms import BATCH_SIZE, TIME_STEPS, FEATURES_COUNT, EPOCH, ITERATIONS, LSTM_UNITS, LEARNING_RATE, DROPOUT_SIZE, SUBJECT
+import analysis
+import predict
+import hyperparms
+import os
 
+os.chdir(os.getcwd()+'/../')
 res = {}
 
-for b in BATCH_SIZE:
-    # analysis returns cost value
-    res.update(analysis(b, TIME_STEPS, EPOCH, ITERATIONS))
-    #predict(b, TIME_STEPS)
+BATCH_SIZE, TIME_STEPS, FEATURES_COUNT, EPOCH, ITERATIONS, \
+LSTM_UNITS, LEARNING_RATE, DROPOUT_SIZE, SUBJECT = \
+hyperparms.BATCH_SIZE, hyperparms.TIME_STEPS, \
+hyperparms.FEATURES_COUNT, hyperparms.EPOCH, \
+hyperparms.ITERATIONS, hyperparms.LSTM_UNITS,\
+hyperparms.LEARNING_RATE, hyperparms.DROPOUT_SIZE, \
+hyperparms.SUBJECT
+
+#res.update(analysis.analysis(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT,FEATURES_COUNT, DROPOUT_SIZE, LSTM_UNITS, LEARNING_RATE))
+predict.predict(BATCH_SIZE, TIME_STEPS, SUBJECT, LSTM_UNITS, FEATURES_COUNT, EPOCH, ITERATIONS)
 
