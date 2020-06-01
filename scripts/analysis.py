@@ -15,7 +15,7 @@ from dtw import dtw
 
 
 def analysis(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, FEATURES_COUNT, DROPOUT_SIZE, LSTM_UNITS, LEARNING_RATE):
-    csv = pd.read_csv('stock/{s}.csv'.format(s=SUBJECT)).drop_duplicates()
+    csv = pd.read_csv('stock/{s}/{s}.csv'.format(s=SUBJECT)).drop_duplicates()
     stock = utils.preprocess(csv)
     stock = utils.normalize_dataframe(stock)
     stock = stock.fillna(method='ffill')
@@ -68,16 +68,7 @@ def analysis(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, FEATURES_COUNT,
     d, cost_matrix, acc_cost_matrix, path = dtw(pred, y_test, dist=manhattan_distance)
     print("Cost is " + str(d))
 
-    plt.figure(figsize=(12, 5))
-    plt.plot(pred, 'r', label="prediction")
-    plt.plot(y_test, label="answer")
-    plt.grid(b=True, which='both', axis='both')
-    plt.legend()
-    plt.title(str(d))
-    plt.savefig('.pictures/bs{4}ts{0}ep{1}it{2}lstm{5}.png'.format(TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, BATCH_SIZE, LSTM_UNITS))
-    print("bs{3}ts{0}ep{1}it{2}.png".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE))
-
-    name = "{4}_bs{3}ts{0}ep{1}it{2}".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE, SUBJECT)
+    name = "{4}_bs{3}ts{0}ep{1}it{2}lstm{5}".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE, SUBJECT, LSTM_UNITS)
     result = {name : d}
     print(result)
     return result

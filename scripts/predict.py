@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 import plotly.offline as pyo
 
 def predict(BATCH_SIZE, TIME_STEPS, SUBJECT, LSTM_UNITS, FEATURES_COUNT, EPOCH, ITERATIONS):
-    csv = pd.read_csv('stock/{s}.csv'.format(s=SUBJECT)).sort_index()
+    csv = pd.read_csv('stock/{s}/{s}.csv'.format(s=SUBJECT)).sort_index()
     stock = utils.preprocess(csv)
     denorm_stock = stock.copy()
     denorm_stock.index = pd.to_datetime(denorm_stock.index)
@@ -53,5 +53,6 @@ def predict(BATCH_SIZE, TIME_STEPS, SUBJECT, LSTM_UNITS, FEATURES_COUNT, EPOCH, 
     )
     data2 = dict(x=pred_candle.index, y=pred_candle.Close, mode='lines')
     fig = dict(data=[data, data2], layout=layout)
-
+    name = "{4}_bs{3}ts{0}ep{1}it{2}lstm{5}".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE, SUBJECT, LSTM_UNITS)
+    pyo.plot(fig, filename="stock\\{0}\\{1}.html".format(SUBJECT, name), auto_open=False)
     pyo.plot(fig)

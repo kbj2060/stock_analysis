@@ -53,10 +53,20 @@ def denormalize(arr, fit):
     return denormalized
 
 def get_model_weight(BATCH_SIZE,TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS):
-    json_file = open('models/{4}_bs{0}ts{1}ep{2}it{3}lstm{5}_model'.format(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS), 'r')
+    json_file = open('stock/{4}/{4}_bs{0}ts{1}ep{2}it{3}lstm{5}_model'.format(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS), 'r')
     model = json_file.read()
     model = model_from_json(model)
-    model.load_weights('weights/{4}_bs{0}ts{1}ep{2}it{3}lstm{5}_weight'.format(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS))
+    model.load_weights('stock/{4}/{4}_bs{0}ts{1}ep{2}it{3}lstm{5}_weight'.format(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS))
+    return model
+
+def save_model_weight(model, TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE,SUBJECT ):
+    model.save_weights("stock/{4}/{4}_bs{3}ts{0}ep{1}it{2}_weight.h5".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE,SUBJECT))
+    print('Weights Are Saved!')
+
+    model_json = model.to_json()
+    with open("stock/{4}/{4}_bs{3}ts{0}ep{1}it{2}_model.h5".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE,SUBJECT), "w") as json_file:
+        json_file.write(model_json)
+        print('Model JSON File is saved!')
     return model
 
 def preprocess(stock):
@@ -72,15 +82,8 @@ def preprocess(stock):
          'ForeignerHolding', 'InstitutionHolding', 'Close']]
     return stock
 
-def save_model_weight(model, TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE,SUBJECT ):
-    model.save_weights("./weights/{4}_bs{3}ts{0}ep{1}it{2}_weight".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE,SUBJECT))
-    print('Weights Are Saved!')
 
-    model_json = model.to_json()
-    with open("./models/{4}_bs{3}ts{0}ep{1}it{2}_model".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE,SUBJECT), "w") as json_file:
-        json_file.write(model_json)
-        print('Model JSON File is saved!')
-    return model
+
 
 def get_ymd(timestamp):
     year = int(str(timestamp)[:4])
