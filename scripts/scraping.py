@@ -12,6 +12,7 @@ import csv
 import os
 from tqdm import tqdm
 import random
+import numpy as np
 
 #%%
 
@@ -109,13 +110,26 @@ def get_data(code, end, site, start=1, daum_headers=None):
 
 def make_csv(keyword):
     outname = '{keyword}.csv'.format(keyword=keyword)
-    outdir = './{keyword}/'.format(keyword=keyword)
+    outdir = '../stock/{keyword}/'.format(keyword=keyword)
     if not os.path.exists(outdir):
         os.makedirs(outdir)        
     fullname = os.path.join(outdir, outname)    
     return fullname
 
-
+def get_current_data(code, data, daum_headers):
+    data = data.set_index('날짜').sort_index(ascending=False)
+    last_date = pd.to_datetime(data.index[0])
+    df = pd.DataFrame(columns=data.columns)
+    for p in range(1, 10):
+        daum_parse_data = parse_daum_page(code, p, daum_headers)
+        naver_parse_data = parse_naver_page(code, p)
+        stacked = pd.concat([naver_parse_data, daum_parse_data], axis=1)
+        df = pd.concat([stacked, df])
+        if True in stacked.index.isin([last_date]):
+            df = df[:last_date]
+            res = pd.concat([df[:-1], data])
+            res.index = pd.to_datetime(res.index, format='%Y-%m-%d', errors='ignore')
+            return res.drop_duplicates()
 
 #%%
 
@@ -182,7 +196,7 @@ def check_search_result(keyword, daum_headers):
     return 1
 
 #%%
-
+'''
 batch = 150
 idx = 1
 total = len(codes)
@@ -207,6 +221,20 @@ for code, keyword in tqdm(zip(codes,keywords), total=len(codes)):
 
     print('{code} {keyword} is completed...'.format(code=code, keyword=keyword))
 #%%
+'''
+error = []
+for code, keyword in zip(codes,keywords):
+    if not os.path.exists('../stock/{keyword}/'.format(keyword=keyword)):
+        continue
+    daum_headers, naver_url, daum_url = assign_vars(code)
 
+    try:
+        data = pd.read_csv('../stock/{0}/{0}.csv'.format(keyword))
+        res = get_current_data(code, data, daum_headers)
+    except:
+        error.append(keyword)
+        continue
+    res.to_csv(make_csv(keyword))
+    print('{0} is completed!'.format(keyword))
 
-
+print(error)

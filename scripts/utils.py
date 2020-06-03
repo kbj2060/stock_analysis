@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 from keras.models import model_from_json
 import datetime
+from keras.models import load_model
 
 def remove_str_from_row(string, row, cols):
     for col in cols:
@@ -53,18 +54,18 @@ def denormalize(arr, fit):
     return denormalized
 
 def get_model_weight(BATCH_SIZE,TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS):
-    json_file = open('stock/{4}/{4}_bs{0}ts{1}ep{2}it{3}lstm{5}_model'.format(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS), 'r')
+    json_file = open('/stock/{4}/{4}_bs{0}ts{1}ep{2}it{3}lstm{5}_model'.format(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS), 'r')
     model = json_file.read()
     model = model_from_json(model)
-    model.load_weights('stock/{4}/{4}_bs{0}ts{1}ep{2}it{3}lstm{5}_weight'.format(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS))
+    model.load_weights('/stock/{4}/{4}_bs{0}ts{1}ep{2}it{3}lstm{5}_weight'.format(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS))
     return model
 
 def save_model_weight(model, TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE,SUBJECT ):
-    model.save_weights("stock/{4}/{4}_bs{3}ts{0}ep{1}it{2}_weight.h5".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE,SUBJECT))
+    model.save_weights("stock/{4}/{4}_bs{3}ts{0}ep{1}it{2}_weight".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE,SUBJECT))
     print('Weights Are Saved!')
 
     model_json = model.to_json()
-    with open("stock/{4}/{4}_bs{3}ts{0}ep{1}it{2}_model.h5".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE,SUBJECT), "w") as json_file:
+    with open("stock/{4}/{4}_bs{3}ts{0}ep{1}it{2}_model".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE,SUBJECT), "w") as json_file:
         json_file.write(model_json)
         print('Model JSON File is saved!')
     return model
@@ -83,8 +84,6 @@ def preprocess(stock):
     return stock
 
 
-
-
 def get_ymd(timestamp):
     year = int(str(timestamp)[:4])
     month = int(str(timestamp)[5:7])
@@ -94,7 +93,6 @@ def get_ymd(timestamp):
 def batch_workdays(last_day, BATCH_SIZE):
     res, holidays = [], 0
     read_holids = np.array(pd.read_excel('data/2020_holidays.xlsx')['일자 및 요일'])
-    print(read_holids)
     for n in range(1, BATCH_SIZE+1):
         next_day = last_day + datetime.timedelta(days=n+holidays)
         year, month, day = get_ymd(next_day)
