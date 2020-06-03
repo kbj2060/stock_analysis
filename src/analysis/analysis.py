@@ -4,7 +4,6 @@
 # coding: utf-8
 
 import pandas as pd
-import matplotlib.pyplot as plt
 from keras.layers.core import Dense, Dropout
 from keras.layers.recurrent import LSTM
 from keras.models import Sequential
@@ -12,10 +11,6 @@ import numpy as np
 from keras.optimizers import Adam
 import utils
 from dtw import dtw
-from keras.models import model_from_json
-import datetime
-from keras.models import load_model
-import plotly.graph_objects as go
 
 def preprocess(stock):
     stock.columns = ['Date', 'Close', 'Open', 'High', 'Low', 'Volume', 'IndividualBuying', 'ForeignerBuying',
@@ -24,7 +19,7 @@ def preprocess(stock):
     stock['Diff'] = [d[-2] * -1 if d[-1] == 'FALL' or d[-1] == 'LOWER_LIMIT' else d[-2] for d in stock.values]
     stock = stock.drop(['Change'], axis=1)
     stock = stock.sort_index()
-    stock['Diff'] = diff_to_percent(stock)
+    stock['Diff'] = utils.diff_to_percent(stock)
     stock = stock[
         ['Diff', 'Open', 'High', 'Low', 'Volume', 'IndividualBuying', 'ForeignerBuying', 'InstitutionBuying',
          'ForeignerHolding', 'InstitutionHolding', 'Close']]
@@ -51,7 +46,7 @@ def learning(model, x_train, y_train, x_val, y_val, ITERATIONS, EPOCH, BATCH_SIZ
         model.reset_states()
     return model
 
-def modeling(BATCH_SIZE, TIME_STEPS, FEATURES_COUNT, DROPOUT_SIZE, LSTM_UNITS, LEARNING_RATE)):
+def modeling(BATCH_SIZE, TIME_STEPS, FEATURES_COUNT, DROPOUT_SIZE, LSTM_UNITS, LEARNING_RATE):
     model = Sequential()
     model.add(LSTM(LSTM_UNITS,
                 batch_input_shape=(BATCH_SIZE, TIME_STEPS, FEATURES_COUNT),
@@ -75,18 +70,14 @@ def save_model_weight(model, TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE,SUBJECT )
         json_file.write(model_json)
         print('Model JSON File is saved!')
 
+
 def analysis(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, FEATURES_COUNT, DROPOUT_SIZE, LSTM_UNITS, LEARNING_RATE):
     csv = pd.read_csv('stock/{s}/{s}.csv'.format(s=SUBJECT)).drop_duplicates()
     stock = preprocess(csv)
     stock = normalize(stock)
     stock = stock.fillna(method='ffill')
 
-    TEST_NUM = BATCH_SIZE * 10 + TIME_STEPS # 250
-    TRAIN_NUM = int(len(stock)) - TEST_NUM * 2 # 1596
-
-    train = stock[(TRAIN_NUM - BATCH_SIZE)%BATCH_SIZE:-2*TEST_NUM]
-    val = stock[-2*TEST_NUM:-TEST_NUM]
-    test = stock[-TEST_NUM:]
+    train, val, test = utils.divide_dataset(stock, BATCH_SIZE, TIME_STEPS)
 
     x_train, y_train = utils.create_dataset(train.to_numpy(), TIME_STEPS, FEATURES_COUNT)
     x_val, y_val = utils.create_dataset(val.to_numpy(), TIME_STEPS, FEATURES_COUNT)
@@ -96,10 +87,10 @@ def analysis(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, FEATURES_COUNT,
     x_val = np.reshape(x_val, (x_val.shape[0], x_val.shape[1], FEATURES_COUNT))
     x_test = np.reshape(x_test, (x_test.shape[0], x_test.shape[1], FEATURES_COUNT))
 
-    model = modeling(BATCH_SIZE, TIME_STEPS, FEATURES_COUNT, DROPOUT_SIZE, LSTM_UNITS, LEARNING_RATE))
-    model = learing(model, x_train, y_train, x_val, y_val, ITERATIONS, EPOCH, BATCH_SIZE)
+    model = modeling(BATCH_SIZE, TIME_STEPS, FEATURES_COUNT, DROPOUT_SIZE, LSTM_UNITS, LEARNING_RATE)
+    model = learning(model, x_train, y_train, x_val, y_val, ITERATIONS, EPOCH, BATCH_SIZE)
     
-.	save_model_weight(model)
+    save_model_weight(model)
 
     pred = model.predict(x_test, batch_size=BATCH_SIZE).reshape(-1, 1)
     y_test = np.array(y_test).reshape(-1, 1)

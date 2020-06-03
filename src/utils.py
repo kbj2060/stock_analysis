@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-
+import datetime
 
 def remove_str_from_row(string, row, cols):
     for col in cols:
@@ -20,6 +20,16 @@ def diff_to_percent(stock):
     res = np.array(res)
     return res.flatten()
 
+
+def divide_dataset(stock, BATCH_SIZE, TIME_STEPS):
+    TEST_NUM = BATCH_SIZE * 10 + TIME_STEPS
+    TRAIN_NUM = int(len(stock)) - TEST_NUM * 2
+
+    train = stock[(TRAIN_NUM - TIME_STEPS) % BATCH_SIZE:-2 * TEST_NUM]
+    val = stock[-2 * TEST_NUM:-TEST_NUM]
+    test = stock[-TEST_NUM:]
+
+    return train, val, test
 
 def create_dataset(data, TIME_STEPS, FEATURES_COUNT):
     dataY = []
