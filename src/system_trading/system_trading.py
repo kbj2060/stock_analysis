@@ -2,7 +2,7 @@ from predict import predict
 from analysis import analysis
 
 class SystemTrading():
-	def __init__(self, SUBJECT, BATCH_SIZE = 7, TIME_STEPS = 15, EPOCH = 10, ITERATIONS = 50, LSTM_UNITS = 64, LEARNING_RATE = 0.0002, DROPOUT_SIZE = 0.6, FEATURES_COUNT = 10, LABEL_COUNT = 1):
+	def __init__(self, SUBJECT, BATCH_SIZE = 7, TIME_STEPS = 15, EPOCH = 10, ITERATIONS = 50, LSTM_UNITS = 64, LEARNING_RATE = 0.0002, DROPOUT_SIZE = 0.4, FEATURES_COUNT = 10, LABEL_COUNT = 1):
 		self.BATCH_SIZE = BATCH_SIZE
 		self.TIME_STEPS =TIME_STEPS
 		self.EPOCH = EPOCH

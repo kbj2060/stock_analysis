@@ -51,8 +51,13 @@ def modeling(BATCH_SIZE, TIME_STEPS, FEATURES_COUNT, DROPOUT_SIZE, LSTM_UNITS, L
     model = Sequential()
     model.add(LSTM(LSTM_UNITS,
                 batch_input_shape=(BATCH_SIZE, TIME_STEPS, FEATURES_COUNT),
-                stateful=True, dropout=DROPOUT_SIZE
+                stateful= True, return_sequences= True
             ))
+    model.add(Dropout(DROPOUT_SIZE))
+    model.add(LSTM(LSTM_UNITS,
+                   stateful= True, return_sequences= True
+                   ))
+    model.add(Dropout(DROPOUT_SIZE))
     model.add(Dense(1))
 
     adam = Adam(lr=LEARNING_RATE)
