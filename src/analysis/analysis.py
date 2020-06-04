@@ -12,6 +12,9 @@ from keras.optimizers import Adam
 import utils
 from dtw import dtw
 from keras.layers import BatchNormalization
+from keras import backend as K
+from keras.layers import Lambda
+
 
 def preprocess(stock):
     stock.columns = ['Date', 'Close', 'Open', 'High', 'Low', 'Volume', 'IndividualBuying', 'ForeignerBuying',
@@ -47,6 +50,26 @@ def learning(model, x_train, y_train, x_val, y_val, ITERATIONS, EPOCH, BATCH_SIZ
         model.reset_states()
     return model
 
+def custom_loss(y_true, y_pred):
+    b_size = 7
+    #y_pred = K.variable(y_pred,dtype='float32')
+    #y_true = K.variable(y_ture, dtype='float32')
+    p_grdt = [ y_pred[i] - y_pred[i-1] for i in range(1,b_size) ]
+    t_grdt = [ y_true[i] - y_true[i-1] for i in range(1,b_size) ]
+    res = [K.switch(t_grdt[j] * p_grdt[j] >= 0 , lambda : K.square(t_grdt[j] - p_grdt[j]), lambda : 2 * K.square(t_grdt[j] - p_grdt[j])) for j  in range(0,6) ]
+    print(K.print_tensor(res))
+    print(K.print_tensor(y_pred- y_true))
+    #for i in range(1, b_size):
+    #    var_y1 = K.variable(y_true[i], dtype='float32')
+    #    var_y2 = K.variable(y_true[i-1] , dtype='float32')
+    #    t_grdt = K.update_sub(var_y1, var_y2)
+    #    p_grdt = y_pred[i] - y_pred[i-1]
+    #    v = K.switch(t_grdt * p_grdt >= 0 , lambda : K.square(t_grdt - p_grdt), lambda : 2 * K.square(t_grdt - p_grdt))
+    #    print(K.print_tensor(v))
+    #    print(K.print_tensor(t_grdt))
+    #    res = K.concatenate([res, v], axis=-1)
+    return sum(res)/b_size
+
 def modeling(BATCH_SIZE, TIME_STEPS, FEATURES_COUNT, DROPOUT_SIZE, LSTM_UNITS, LEARNING_RATE):
     model = Sequential()
     model.add(LSTM(LSTM_UNITS,
@@ -60,20 +83,20 @@ def modeling(BATCH_SIZE, TIME_STEPS, FEATURES_COUNT, DROPOUT_SIZE, LSTM_UNITS, L
     model.add(Dense(1))
 
     adam = Adam(lr=LEARNING_RATE)
-    model.compile(loss='mean_squared_error', optimizer=adam, metrics=['accuracy'])
+    model.compile(loss=custom_loss, optimizer=adam, metrics=['accuracy'])
     return model
 
 def save_model_weight(model, TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE,SUBJECT, LSTM_UNITS ):
-    model.save_weights("stock\\{4}\\{4}_bs{3}ts{0}ep{1}it{2}lstm{5}_weight".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE, SUBJECT, LSTM_UNITS))
+    model.save_weights("stock/{4}/{4}_bs{3}ts{0}ep{1}it{2}lstm{5}_weight".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE, SUBJECT, LSTM_UNITS))
     print('Weights Are Saved!')
     model_json = model.to_json()
-    with open("stock\\{4}\\{4}_bs{3}ts{0}ep{1}it{2}lstm{5}_model".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE, SUBJECT, LSTM_UNITS), "w") as json_file:
+    with open("stock/{4}/{4}_bs{3}ts{0}ep{1}it{2}lstm{5}_model".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE, SUBJECT, LSTM_UNITS), "w") as json_file:
         json_file.write(model_json)
         print('Model JSON File is saved!')
 
 
 def analysis(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, FEATURES_COUNT, DROPOUT_SIZE, LSTM_UNITS, LEARNING_RATE):
-    csv = pd.read_csv('stock\\{s}\\{s}.csv'.format(s=SUBJECT)).drop_duplicates()
+    csv = pd.read_csv('stock/{s}/{s}.csv'.format(s=SUBJECT)).drop_duplicates()
     stock = preprocess(csv)
     stock = normalize(stock)
     stock = stock.fillna(method='ffill')

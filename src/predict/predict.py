@@ -1,10 +1,9 @@
-import pandas as pd
 import utils
 import numpy as np
 import plotly.offline as pyo
 from keras.models import model_from_json
 import plotly.graph_objects as go
-
+import pandas as pd
 
 def preprocess(stock):
     stock.columns = ['Date', 'Close', 'Open', 'High', 'Low', 'Volume', 'IndividualBuying', 'ForeignerBuying',
@@ -37,10 +36,10 @@ def denormalize(arr, fit):
 
 
 def get_model_weight(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS):
-    json_file = open('stock\\{4}\\{4}_bs{0}ts{1}ep{2}it{3}lstm{5}_model'.format(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS), 'r')
+    json_file = open('stock/{4}/{4}_bs{0}ts{1}ep{2}it{3}lstm{5}_model'.format(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS), 'r')
     model = json_file.read()
     model = model_from_json(model)
-    model.load_weights('stock\\{4}\\{4}_bs{0}ts{1}ep{2}it{3}lstm{5}_weight'.format(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS))
+    model.load_weights('stock/{4}/{4}_bs{0}ts{1}ep{2}it{3}lstm{5}_weight'.format(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS))
     return model
 
 def draw_graph(y_candle, pred_candle):
@@ -60,7 +59,7 @@ def draw_graph(y_candle, pred_candle):
 
 
 def predict(BATCH_SIZE, TIME_STEPS, SUBJECT, LSTM_UNITS, FEATURES_COUNT, EPOCH, ITERATIONS, options='figure'):
-    csv = pd.read_csv('stock\\{s}\\{s}.csv'.format(s=SUBJECT)).sort_index()
+    csv = pd.read_csv('stock/{s}/{s}.csv'.format(s=SUBJECT)).sort_index()
     stock = preprocess(csv)
     denorm_stock = stock.copy()
     denorm_stock.index = pd.to_datetime(denorm_stock.index)
@@ -96,4 +95,4 @@ def predict(BATCH_SIZE, TIME_STEPS, SUBJECT, LSTM_UNITS, FEATURES_COUNT, EPOCH, 
     pred_candle.index = y_candle.index.append(pd.to_datetime(batch_days))
     fig = draw_graph(y_candle, pred_candle)
     name = "{4}_bs{3}ts{0}ep{1}it{2}lstm{5}".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE, SUBJECT, LSTM_UNITS)
-    pyo.plot(fig, filename="stock\\{0}\\{1}.html".format(SUBJECT, name), auto_open=False)
+    pyo.plot(fig, filename="stock/{0}/{1}.html".format(SUBJECT, name), auto_open=False)

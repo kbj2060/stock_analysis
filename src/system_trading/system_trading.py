@@ -15,7 +15,7 @@ class SystemTrading():
 		self.LABEL_COUNT = LABEL_COUNT
 
 	def predict(self, options='figure'):
-		return predict.predict(self.BATCH_SIZE, self.TIME_STEPS, self.SUBJECT, self.LSTM_UNITS, self.FEATURES_COUNT, self.EPOCH, self.ITERATIONS, options)
+		predict.predict(self.BATCH_SIZE, self.TIME_STEPS, self.SUBJECT, self.LSTM_UNITS, self.FEATURES_COUNT, self.EPOCH, self.ITERATIONS, options)
 
 	def analysis(self):
 		return analysis.analysis(self.BATCH_SIZE, self.TIME_STEPS, self.EPOCH, self.ITERATIONS, self.SUBJECT, self.FEATURES_COUNT, self.DROPOUT_SIZE, self.LSTM_UNITS, self.LEARNING_RATE)
