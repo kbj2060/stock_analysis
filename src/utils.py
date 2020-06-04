@@ -60,7 +60,7 @@ def get_ymd(timestamp):
 
 def batch_workdays(last_day, BATCH_SIZE):
     res, holidays = [], 0
-    read_holids = np.array(pd.read_excel('data/2020_holidays.xlsx')['일자 및 요일'])
+    read_holids = np.array(pd.read_excel('data\\2020_holidays.xlsx')['일자 및 요일'])
     for n in range(1, BATCH_SIZE+1):
         next_day = last_day + datetime.timedelta(days=n+holidays)
         year, month, day = get_ymd(next_day)

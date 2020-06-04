@@ -11,6 +11,7 @@ import numpy as np
 from keras.optimizers import Adam
 import utils
 from dtw import dtw
+from keras.layers import BatchNormalization
 
 def preprocess(stock):
     stock.columns = ['Date', 'Close', 'Open', 'High', 'Low', 'Volume', 'IndividualBuying', 'ForeignerBuying',
@@ -50,29 +51,25 @@ def modeling(BATCH_SIZE, TIME_STEPS, FEATURES_COUNT, DROPOUT_SIZE, LSTM_UNITS, L
     model = Sequential()
     model.add(LSTM(LSTM_UNITS,
                 batch_input_shape=(BATCH_SIZE, TIME_STEPS, FEATURES_COUNT),
-                return_sequences = True
+                stateful=True, dropout=DROPOUT_SIZE
             ))
-    model.add(Dropout(DROPOUT_SIZE))
-    for i in range(1):
-        model.add(LSTM(LSTM_UNITS, batch_input_shape=(BATCH_SIZE, TIME_STEPS, FEATURES_COUNT)))
-        model.add(Dropout(DROPOUT_SIZE))
     model.add(Dense(1))
 
     adam = Adam(lr=LEARNING_RATE)
     model.compile(loss='mean_squared_error', optimizer=adam, metrics=['accuracy'])
     return model
 
-def save_model_weight(model, TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE,SUBJECT ):
-    model.save_weights("stock/{4}/{4}_bs{3}ts{0}ep{1}it{2}_weight".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE,SUBJECT))
+def save_model_weight(model, TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE,SUBJECT, LSTM_UNITS ):
+    model.save_weights("stock\\{4}\\{4}_bs{3}ts{0}ep{1}it{2}lstm{5}_weight".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE, SUBJECT, LSTM_UNITS))
     print('Weights Are Saved!')
     model_json = model.to_json()
-    with open("stock/{4}/{4}_bs{3}ts{0}ep{1}it{2}_model".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE,SUBJECT), "w") as json_file:
+    with open("stock\\{4}\\{4}_bs{3}ts{0}ep{1}it{2}lstm{5}_model".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE, SUBJECT, LSTM_UNITS), "w") as json_file:
         json_file.write(model_json)
         print('Model JSON File is saved!')
 
 
 def analysis(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, FEATURES_COUNT, DROPOUT_SIZE, LSTM_UNITS, LEARNING_RATE):
-    csv = pd.read_csv('stock/{s}/{s}.csv'.format(s=SUBJECT)).drop_duplicates()
+    csv = pd.read_csv('stock\\{s}\\{s}.csv'.format(s=SUBJECT)).drop_duplicates()
     stock = preprocess(csv)
     stock = normalize(stock)
     stock = stock.fillna(method='ffill')
@@ -90,7 +87,7 @@ def analysis(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, FEATURES_COUNT,
     model = modeling(BATCH_SIZE, TIME_STEPS, FEATURES_COUNT, DROPOUT_SIZE, LSTM_UNITS, LEARNING_RATE)
     model = learning(model, x_train, y_train, x_val, y_val, ITERATIONS, EPOCH, BATCH_SIZE)
     
-    save_model_weight(model)
+    save_model_weight(model, TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE, SUBJECT, LSTM_UNITS)
 
     pred = model.predict(x_test, batch_size=BATCH_SIZE).reshape(-1, 1)
     y_test = np.array(y_test).reshape(-1, 1)

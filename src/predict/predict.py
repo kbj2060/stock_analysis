@@ -37,10 +37,10 @@ def denormalize(arr, fit):
 
 
 def get_model_weight(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS):
-    json_file = open('stock\\{4}\\{4}_bs{0}ts{1}ep{2}it{3}lstm{5}_model.h5'.format(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS), 'r')
+    json_file = open('stock\\{4}\\{4}_bs{0}ts{1}ep{2}it{3}lstm{5}_model'.format(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS), 'r')
     model = json_file.read()
     model = model_from_json(model)
-    model.load_weights('stock\\{4}\\{4}_bs{0}ts{1}ep{2}it{3}lstm{5}_weight.h5'.format(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS))
+    model.load_weights('stock\\{4}\\{4}_bs{0}ts{1}ep{2}it{3}lstm{5}_weight'.format(BATCH_SIZE, TIME_STEPS, EPOCH, ITERATIONS, SUBJECT, LSTM_UNITS))
     return model
 
 def draw_graph(y_candle, pred_candle):
@@ -60,7 +60,7 @@ def draw_graph(y_candle, pred_candle):
 
 
 def predict(BATCH_SIZE, TIME_STEPS, SUBJECT, LSTM_UNITS, FEATURES_COUNT, EPOCH, ITERATIONS, options='figure'):
-    csv = pd.read_csv('stock/{s}/{s}.csv'.format(s=SUBJECT)).sort_index()
+    csv = pd.read_csv('stock\\{s}\\{s}.csv'.format(s=SUBJECT)).sort_index()
     stock = preprocess(csv)
     denorm_stock = stock.copy()
     denorm_stock.index = pd.to_datetime(denorm_stock.index)
@@ -94,6 +94,6 @@ def predict(BATCH_SIZE, TIME_STEPS, SUBJECT, LSTM_UNITS, FEATURES_COUNT, EPOCH, 
     
     batch_days = utils.batch_workdays(denorm_stock.index[-1], BATCH_SIZE)
     pred_candle.index = y_candle.index.append(pd.to_datetime(batch_days))
-    fig = utils.draw_graph(y_candle, pred_candle)
+    fig = draw_graph(y_candle, pred_candle)
     name = "{4}_bs{3}ts{0}ep{1}it{2}lstm{5}".format(TIME_STEPS, EPOCH, ITERATIONS, BATCH_SIZE, SUBJECT, LSTM_UNITS)
-    pyo.plot(fig, filename="stock/{0}/{1}.html".format(SUBJECT, name), auto_open=False)
+    pyo.plot(fig, filename="stock\\{0}\\{1}.html".format(SUBJECT, name), auto_open=False)
