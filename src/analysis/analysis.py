@@ -50,14 +50,13 @@ def learning(model, x_train, y_train, x_val, y_val, ITERATIONS, EPOCH, BATCH_SIZ
 def modeling(BATCH_SIZE, TIME_STEPS, FEATURES_COUNT, DROPOUT_SIZE, LSTM_UNITS, LEARNING_RATE):
     model = Sequential()
     model.add(LSTM(LSTM_UNITS,
-                batch_input_shape=(BATCH_SIZE, TIME_STEPS, FEATURES_COUNT),
-                stateful= True, return_sequences= True
-            ))
-    model.add(Dropout(DROPOUT_SIZE))
-    model.add(LSTM(LSTM_UNITS,
-                   stateful= True, return_sequences= True
+                   batch_input_shape=(BATCH_SIZE, TIME_STEPS, FEATURES_COUNT),
+                   return_sequences=True
                    ))
     model.add(Dropout(DROPOUT_SIZE))
+    for i in range(1):
+        model.add(LSTM(LSTM_UNITS, batch_input_shape=(BATCH_SIZE, TIME_STEPS, FEATURES_COUNT)))
+        model.add(Dropout(DROPOUT_SIZE))
     model.add(Dense(1))
 
     adam = Adam(lr=LEARNING_RATE)
