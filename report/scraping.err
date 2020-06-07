@@ -1,0 +1,216 @@
+[2020-06-06 22:59:32.644935] 이지바이오 Error. 'NoneType' object has no attribute 'dropna' 
+[2020-06-06 23:24:14.305057] 이지바이오 Error. 'NoneType' object has no attribute 'dropna' 
+[2020-06-06 23:43:49.307021] 3S Error. 'NoneType' object has no attribute 'loc' 
+[2020-06-06 23:43:49.482573] AJ네트웍스 Error. 'NoneType' object has no attribute 'loc' 
+[2020-06-06 23:43:49.649658] AK홀딩스 Error. 'NoneType' object has no attribute 'loc' 
+[2020-06-06 23:43:49.827704] APS홀딩스 Error. 'NoneType' object has no attribute 'loc' 
+[2020-06-06 23:43:49.974485] AP시스템 Error. 'NoneType' object has no attribute 'loc' 
+[2020-06-06 23:43:50.150406] AP위성 Error. 'NoneType' object has no attribute 'loc' 
+[2020-06-06 23:43:50.328467] BGF Error. 'NoneType' object has no attribute 'loc' 
+[2020-06-06 23:43:50.497110] BGF리테일 Error. 'NoneType' object has no attribute 'loc' 
+[2020-06-06 23:43:50.714584] BNK금융지주 Error. The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all(). 
+[2020-06-06 23:43:50.935414] BYC Error. The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all(). 
+[2020-06-06 23:44:27.795518] BNK금융지주 Error. The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all(). 
+[2020-06-06 23:44:28.012405] BYC Error. The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all(). 
+[2020-06-06 23:44:28.273066] BYC우 Error. The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all(). 
+[2020-06-06 23:44:28.494434] CJ Error. The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all(). 
+[2020-06-06 23:44:28.701069] CJ CGV Error. The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all(). 
+[2020-06-06 23:44:28.909023] CJ ENM Error. The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all(). 
+[2020-06-06 23:44:29.077227] CJ4우(전환) Error. The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all(). 
+[2020-06-06 23:44:29.288991] CJ대한통운 Error. The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all(). 
+[2020-06-06 23:44:29.491512] CJ씨푸드 Error. The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all(). 
+[2020-06-06 23:44:29.699956] CJ씨푸드1우 Error. The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all(). 
+[2020-06-06 23:44:29.926413] CJ우 Error. The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all(). 
+[2020-06-06 23:44:30.148790] CJ제일제당 Error. The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all(). 
+[2020-06-06 23:44:30.351455] CJ제일제당 우 Error. The truth value of a DataFrame is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all(). 
+[2020-06-06 23:45:15.035082] 3S Error. 'NoneType' object has no attribute 'empty' 
+[2020-06-06 23:45:15.205136] AJ네트웍스 Error. 'NoneType' object has no attribute 'empty' 
+[2020-06-06 23:45:15.384747] AK홀딩스 Error. 'NoneType' object has no attribute 'empty' 
+[2020-06-06 23:45:15.580673] APS홀딩스 Error. 'NoneType' object has no attribute 'empty' 
+[2020-06-06 23:45:15.763482] AP시스템 Error. 'NoneType' object has no attribute 'empty' 
+[2020-06-06 23:45:15.921019] AP위성 Error. 'NoneType' object has no attribute 'empty' 
+[2020-06-06 23:45:16.110235] BGF Error. 'NoneType' object has no attribute 'empty' 
+[2020-06-06 23:45:16.293045] BGF리테일 Error. 'NoneType' object has no attribute 'empty' 
+[2020-06-06 23:45:16.477383] BNK금융지주 Error. 'bool' object is not callable 
+[2020-06-06 23:45:16.657903] BYC Error. 'bool' object is not callable 
+[2020-06-06 23:45:16.882375] BYC우 Error. 'bool' object is not callable 
+[2020-06-06 23:46:01.813305] 3S Error. 'bool' object is not callable 
+[2020-06-06 23:46:01.964431] AJ네트웍스 Error. 'bool' object is not callable 
+[2020-06-06 23:46:02.171165] AK홀딩스 Error. 'bool' object is not callable 
+[2020-06-06 23:46:02.404694] APS홀딩스 Error. 'bool' object is not callable 
+[2020-06-06 23:46:02.557237] AP시스템 Error. 'bool' object is not callable 
+[2020-06-06 23:46:02.724953] AP위성 Error. 'bool' object is not callable 
+[2020-06-06 23:46:02.882312] BGF Error. 'bool' object is not callable 
+[2020-06-06 23:46:03.068562] BGF리테일 Error. 'bool' object is not callable 
+[2020-06-06 23:46:34.269257] GB중소성장기업A Error. [Errno 2] File /Users/llewyn/PycharmProjects/stock_analysis/stock/GB중소성장기업A/GB중소성장기업A.csv does not exist: '/Users/llewyn/PycharmProjects/stock_analysis/stock/GB중소성장기업A/GB중소성장기업A.csv' 
+[2020-06-06 23:46:34.269768] GB중소성장기업C Error. [Errno 2] File /Users/llewyn/PycharmProjects/stock_analysis/stock/GB중소성장기업C/GB중소성장기업C.csv does not exist: '/Users/llewyn/PycharmProjects/stock_analysis/stock/GB중소성장기업C/GB중소성장기업C.csv' 
+[2020-06-06 23:46:34.270194] GB중소성장기업I Error. [Errno 2] File /Users/llewyn/PycharmProjects/stock_analysis/stock/GB중소성장기업I/GB중소성장기업I.csv does not exist: '/Users/llewyn/PycharmProjects/stock_analysis/stock/GB중소성장기업I/GB중소성장기업I.csv' 
+[2020-06-06 23:48:42.654356] GB중소성장기업A Error. [Errno 2] File /Users/llewyn/PycharmProjects/stock_analysis/stock/GB중소성장기업A/GB중소성장기업A.csv does not exist: '/Users/llewyn/PycharmProjects/stock_analysis/stock/GB중소성장기업A/GB중소성장기업A.csv' 
+[2020-06-06 23:48:42.655026] GB중소성장기업C Error. [Errno 2] File /Users/llewyn/PycharmProjects/stock_analysis/stock/GB중소성장기업C/GB중소성장기업C.csv does not exist: '/Users/llewyn/PycharmProjects/stock_analysis/stock/GB중소성장기업C/GB중소성장기업C.csv' 
+[2020-06-06 23:48:42.655566] GB중소성장기업I Error. [Errno 2] File /Users/llewyn/PycharmProjects/stock_analysis/stock/GB중소성장기업I/GB중소성장기업I.csv does not exist: '/Users/llewyn/PycharmProjects/stock_analysis/stock/GB중소성장기업I/GB중소성장기업I.csv' 
+[2020-06-07 00:15:57.730844] 3S Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:15:57.949166] AJ네트웍스 Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:15:58.243641] AK홀딩스 Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:15:58.492685] APS홀딩스 Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:15:58.687234] AP시스템 Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:15:58.891028] AP위성 Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:15:59.404716] BGF Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:15:59.597643] BGF리테일 Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:15:59.855480] BNK금융지주 Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:16:00.104564] BYC Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:16:00.340661] BYC우 Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:16:44.236031] 3S Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:16:44.458180] AJ네트웍스 Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:16:44.724516] AK홀딩스 Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:16:44.968927] APS홀딩스 Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:16:45.162620] AP시스템 Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:16:45.364296] AP위성 Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:16:45.581849] BGF Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:16:45.787104] BGF리테일 Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:16:46.029503] BNK금융지주 Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 00:16:46.335037] BYC Error. Worker.clicked[] signal has 0 argument(s) but 1 provided 
+[2020-06-07 02:09:16.476287] 이지바이오 Error. 'NoneType' object has no attribute 'empty' 
+[2020-06-07 02:51:18.360618] 3S Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:18.381856] AJ네트웍스 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:18.406295] AK홀딩스 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:18.437100] APS홀딩스 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:18.469754] AP시스템 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:18.503994] AP위성 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:18.539582] BGF Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:18.573028] BGF리테일 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:18.609985] BNK금융지주 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:18.648023] BYC Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:18.684433] BYC우 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:18.722119] CJ Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:18.765871] CJ CGV Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:18.803008] CJ ENM Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:18.836356] CJ4우(전환) Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:18.876477] CJ대한통운 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:18.907110] CJ씨푸드 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:18.945490] CJ씨푸드1우 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:18.979266] CJ우 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.021190] CJ제일제당 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.058724] CJ제일제당 우 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.094023] CJ프레시웨이 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.124359] CMG제약 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.164435] CNH Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.193688] CS Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.231685] CSA 코스믹 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.263568] CS홀딩스 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.304438] DB Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.333455] DB금융스팩7호 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.378222] DB금융투자 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.415069] DB손해보험 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.444771] DB하이텍 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.483298] DB하이텍1우 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.517775] DGB금융지주 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.561954] DI동일 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.598323] DMS Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.627857] DRB동일 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.667731] DSC인베스트먼트 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.700868] DSR Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.743613] DSR제강 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.781669] E1 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.809541] EDGC Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.852258] EG Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.884832] EMW Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.912445] F&F Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.952518] GH신소재 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:19.990217] GKL Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.020778] GRT Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.060122] GS Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.094414] GST Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.137219] GS건설 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.174069] GS글로벌 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.207281] GS리테일 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.249503] GS우 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.285842] GS홈쇼핑 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.320466] GV Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.360526] HB테크놀러지 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.397634] HDC Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.427255] HDC아이콘트롤스 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.469164] HDC현대EP Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.504210] HDC현대산업개발 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.537108] HMM Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.577260] HRS Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.610320] HSD엔진 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.649753] IBKS제10호스팩 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.683375] IBKS제11호스팩 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.715346] IBKS제12호스팩 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.755253] IBKS제7호스팩 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.797441] IHQ Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.832170] ISC Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.875197] ITX엠투엠 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.912149] JB금융지주 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.941229] JTC Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:20.981770] JW생명과학 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.015198] JW신약 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.056467] JW중외제약 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.095761] JW중외제약2우B Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.132595] JW중외제약우 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.168930] JW홀딩스 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.207673] KBI메탈 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.248101] KB금융 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.282183] KB오토시스 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.324121] KCC Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.363847] KCC건설 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.401374] KCI Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.434251] KCTC Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.471454] KC그린홀딩스 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.517178] KC코트렐 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.550141] KD Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.592788] KEC Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.629397] KG ETS Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.662944] KG동부제철 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.708299] KG동부제철우 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.748287] KG모빌리언스 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.786138] KG이니시스 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.822846] KG케미칼 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.858865] KH바텍 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.902517] KISCO홀딩스 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.938448] KMH Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:21.976019] KMH하이텍 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.016714] KPX생명과학 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.050610] KPX케미칼 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.097952] KPX홀딩스 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.132107] KR모터스 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.176191] KSS해운 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.210687] KT Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.253777] KT&G Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.293512] KTB투자증권 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.331123] KTH Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.366065] KTcs Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.399389] KTis Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.440435] KT서브마린 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.479467] LF Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.514265] LG Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.561587] LG디스플레이 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.604773] LG상사 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.646127] LG생활건강 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.680952] LG생활건강우 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.721863] LG우 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.757544] LG유플러스 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.795847] LG이노텍 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.830460] LG전자 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.872539] LG전자우 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.909296] LG하우시스 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.943528] LG하우시스우 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:22.984800] LG헬로비전 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:23.023569] LG화학 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:23.060544] LG화학우 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:23.094523] LIG넥스원 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:23.138177] LS Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:23.171364] LS ELECTRIC Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:23.213871] LS네트웍스 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:23.249381] LS전선아시아 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:23.280431] MH에탄올 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:23.320255] MP그룹 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:23.354838] MP한강 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:23.396746] NAVER Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:23.432250] NEW Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:23.467378] NE능률 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:23.504352] NHN Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:23.548045] NHN벅스 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:23.587986] NHN한국사이버결제 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 02:51:23.625288] NH투자증권 Error. get_current_data() takes 3 positional arguments but 4 were given 
+[2020-06-07 03:17:00.526470] 이지바이오 Error. 'NoneType' object has no attribute 'empty' 
