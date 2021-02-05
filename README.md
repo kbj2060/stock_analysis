@@ -1,5 +1,6 @@
 # stock_analysis [KOSPI/KOSDAQ]
-
+I cannot solve the lagging problem with this way.
+<br/>
 This is Stock Analysis Package from Scraping to Prediction. Scraper uses Naver and Daum pages and, ML uses "A deep learning framework for financial time series using stacked autoencoders and long-short term memory" paper for modeling. More detail is in [another my repo](https://github.com/kbj2060/MachineLearningForStudy/tree/master/Papers/A%20deep%20learning%20framework%20for%20financial%20time). This project is planing to combine with [Pytrader](https://github.com/kbj2060/pytrader). So complete project could choose good stocks, buy those and finally sell in good price.
 
 <br/>
